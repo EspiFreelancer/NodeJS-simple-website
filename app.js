@@ -9,6 +9,9 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+// Configure MongoDb as DDBBB and Mongoose as ODM
+var db = require('./config/db');
+
 // Configure Nunjucks with 'view' as template directory
 nunjucks.configure('views', {
 	autoescape: true,
