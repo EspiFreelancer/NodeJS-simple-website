@@ -1,4 +1,5 @@
 var express = require('express');
+var Robot = require('../models/robot')
 var router = express.Router();
 
 /* GET home page. */
@@ -9,7 +10,7 @@ router.get('/', async function(req, res, next) {
 		title: 'Nunjucks example'
 	}
 
-  res.render('index.njk', data);
+	res.render('index.njk', data);
 });
 
 /* About */
@@ -37,6 +38,29 @@ router.get('/contacto', function(req, res, next) {
 		title: 'Contacto'
 	}
 	res.render('contact.njk', data);
+})
+
+/* Shop */
+router.get('/tienda', async function(req, res) {
+
+	// Get data from the database
+	try	{
+		const arrayRobots = await Robot.find()
+		console.log(arrayRobots)
+
+		// Send content and render template
+		let data = {
+			arrayRobots: arrayRobots,
+			layout: 'layout.njk',
+			title: 'Tienda',
+		}
+
+		res.render('shop.njk', data);
+
+	} catch (error) {
+		console.log(error)
+	}
+
 })
 
 module.exports = router;
