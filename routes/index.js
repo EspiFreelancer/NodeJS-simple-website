@@ -1,66 +1,23 @@
 var express = require('express');
-var Robot = require('../models/robot')
+var Robot = require('../models/robotModel')
 var router = express.Router();
 
+var home = require('../controllers/homeController.js');
+var about = require('../controllers/aboutController.js');
+var contact = require('../controllers/contactController.js');
+var products = require('../controllers/productsController.js');
+
+
 /* GET home page. */
-router.get('/', async function(req, res, next) {
-	let data = {
-		message: 'Express and Nunjucks',
-		layout: 'layout.njk',
-		title: 'Nunjucks example'
-	}
+router.get('/', home.show);
 
-	res.render('index.njk', data);
-});
+/* GET About page. */
+router.get('/nosotros', about.show);
 
-/* About */
-router.get('/nosotros', function(req, res, next) {
-	let data = {
-		layout: 'layout.njk',
-		title: 'Sobre nosotros'
-	}
-	res.render('about.njk', data);
-})
+/* GET Contact page. */
+router.get('/contacto', contact.show);
 
-/* Services */
-router.get('/servicios', function(req, res, next) {
-	let data = {
-		layout: 'layout.njk',
-		title: 'Servicios'
-	}
-	res.render('services.njk', data);
-})
-
-/* Contact */
-router.get('/contacto', function(req, res, next) {
-	let data = {
-		layout: 'layout.njk',
-		title: 'Contacto'
-	}
-	res.render('contact.njk', data);
-})
-
-/* Shop */
-router.get('/tienda', async function(req, res) {
-
-	// Get data from the database
-	try	{
-		const arrayRobots = await Robot.find()
-		console.log(arrayRobots)
-
-		// Send content and render template
-		let data = {
-			arrayRobots: arrayRobots,
-			layout: 'layout.njk',
-			title: 'Tienda',
-		}
-
-		res.render('shop.njk', data);
-
-	} catch (error) {
-		console.log(error)
-	}
-
-})
+/* GET list of products. */
+router.get('/robots', products.list);
 
 module.exports = router;
