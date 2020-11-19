@@ -8,7 +8,7 @@
 	<section class="jumbotron text-center">
 		<div class="container">
 			<h1 class="jumbotron-heading">{{ title }}</h1>
-			<p class="lead text-muted">Usted esta en la tienda.</p>
+			<p class="lead text-muted">Estos son los kids que se encuentran disponibles actualmente</p>
 		</div>
 	</section>
 
@@ -28,14 +28,11 @@
 							<p class="card-text">Modelo: {{ robot.model }}</p>
 							<h5>{{ robot.name }}</h5>
 							<p class="card-text">Precio: ${{ robot.price }}</p>
-							<small class="text-muted">Descripción: ${{ robot.description }}</small>
-							<div class="d-flex justify-content-between align-items-center">
+							<small class="text-muted">Descripción: {{ robot.description }}</small>
+							<div class="d-flex justify-content-between align-items-center my-1">
 								<div class="btn-group">
-									<a href="/">
-									<button type="button" class="btn btn-sm btn-outline-secondary">+ Info</button>
-									</a>
-									<a href="/">
-									<button type="button" class="btn btn-sm btn-outline-secondary">Comprar</button>
+									<a href="/robot/{{ robot._id }}">
+									<button type="button" class="btn btn-xl btn-secondary">+ Info</button>
 									</a>
 								</div>
 							</div>
