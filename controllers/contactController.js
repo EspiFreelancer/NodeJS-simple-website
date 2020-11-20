@@ -7,9 +7,10 @@ var contactController = {};
 contactController.show = function(req, res, next) {
 	let data = {
 		layout: 'layout.njk',
+		title: 'sToy Robot - Contacto'
 	}
 
-	res.render('home.njk', data);
+	res.render('contact.njk', data);
 };
 
 module.exports = contactController;

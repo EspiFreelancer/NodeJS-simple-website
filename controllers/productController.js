@@ -18,7 +18,7 @@ productController.list = async function(req, res) {
 		let data = {
 			arrayRobots: arrayProducts,
 			layout: 'layout.njk',
-			title: 'Nuestros Robots',
+			title: 'sToy Robot - Productos'
 		}
 
 		res.render('products.njk', data);
@@ -38,7 +38,7 @@ productController.show =  function(req, res){
 		let data = {
 			robot: product,
 			layout: 'layout.njk',
-			title: 'Nuestros Robots',
+			title: 'sToy Robot: ' + product.model
 		}
 
         res.render('product_detail.njk', data );
